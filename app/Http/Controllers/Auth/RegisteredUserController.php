@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Authentication\ClientRegisterRequest;
+use App\Models\Client;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -13,6 +16,7 @@ use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
+    use CoreJsonResponse;
     /**
      * Display the registration view.
      *
@@ -50,5 +54,19 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function clientRegister(ClientRegisterRequest $request)
+    {
+
+        $client =  Client::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+
+        ]);
+
+        $token = $client->createToken('Auth Token')->accessToken;
+        return $this->created(['client' => $client, 'token' => $token]);
     }
 }
