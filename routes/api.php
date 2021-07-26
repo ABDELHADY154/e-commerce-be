@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 // Authentication
 Route::post('/clientRegister', [RegisteredUserController::class, 'clientRegister'])->name('client.register');
+Route::post('clientLogin', [RegisteredUserController::class, 'clientLogin'])->name('client.login');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
