@@ -15,6 +15,12 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('phone_number')->nullable();
+            $table->string('image')->default('user.png');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
