@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Client;
+use App\Http\Resources\ClientAuthResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class ClientController extends Controller
 {
+    use CoreJsonResponse;
     /**
      * Display a listing of the resource.
      *
@@ -81,5 +86,42 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        $client = Client::where('email', $request->email)->first();
+
+        if (!$client || !Hash::check($request->password, $client->password) || ($client == null)) {
+            throw ValidationException::withMessages([
+                'error' => ['Incorrect Email or Password'],
+            ]);
+        }
+        $token = $client->createToken('Auth Token')->accessToken;
+        return $this->ok((new ClientAuthResource(['token' => $token, 'client' => $client]))->resolve());
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email', 'unique:clients,email'],
+            'phone_number' => ['nullable', 'numeric'],
+            'password' => ['required', 'min:8']
+        ]);
+        $client =  Client::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone_number' => $request->phone_number
+
+        ]);
+
+        $token = $client->createToken('Auth Token')->accessToken;
+        return $this->ok((new ClientAuthResource(['token' => $token, 'client' => $client]))->resolve());
     }
 }
