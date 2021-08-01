@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/clientLogin', 'ClientController@login')->name('client.login');
 Route::post('/clientRegister', 'ClientController@register')->name('client.register');
+Route::post('/resetPass', 'ForgetPasswordController@forgot')->name('client.forgetPassword');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/client', 'ClientController@show')->name('client.show');
