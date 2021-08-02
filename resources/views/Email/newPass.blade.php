@@ -56,9 +56,11 @@
         <div class="column">
             <div class="card">
                 {{-- <img src="{{asset('storage/images/AAST-TRAINERY/AAST-TRAINERY-LOGO.png')}}" alt=""> --}}
-                <h2>Desire</h2>
-
-                <h1>your new password is: {{$token}}</h1>
+                <h2>E-Commerce</h2>
+                <h4>
+                    To reset your password
+                </h4>
+                <h1>your verification code: {{$token}}</h1>
             </div>
         </div>
     </div>
