@@ -20,5 +20,6 @@ Route::post('/resetPass', 'ForgetPasswordController@forgot')->name('client.forge
 Route::post('/resetVerify', 'ForgetPasswordController@verify')->name('client.verify');
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('/client', 'ClientController@show')->name('client.show');
+    Route::get('/clientProfile', 'ClientController@getProfile')->name('client.get-profile');
+    Route::post('/clientUpdateImage', 'ClientController@updateImage')->name('client.update-image');
 });
