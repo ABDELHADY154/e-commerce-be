@@ -141,7 +141,7 @@ class ClientController extends Controller
         if ($request->file('image')) {
             $fileName = $request->file('image')->hashName();
             $path = $request->file('image')->storeAs(
-                'clientImages',
+                'public/clientImages',
                 $fileName
             );
 
