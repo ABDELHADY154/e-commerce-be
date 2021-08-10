@@ -60,6 +60,25 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Products
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item {{ Route::currentRouteName() == 'gender.index' || Route::currentRouteName() == 'gender.index'? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+            <i class="fas fa-users"></i>
+            <span>Products</span>
+        </a>
+        <div id="collapseThree" class="collapse {{ Route::currentRouteName() == 'gender.index' || Route::currentRouteName() == 'gender.index'? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
+                <a class="collapse-item {{ Route::currentRouteName() == 'gender.index'? 'active' : '' }}" href="{{ route('gender.index') }}">Gender</a>
+                {{-- <a class="collapse-item {{ Route::currentRouteName() == 'client.index'? 'active' : '' }}" href="{{ route('client.index') }}">Client</a> --}}
+            </div>
+        </div>
+    </li>
 
     {{-- <a href="{{route('logout')}}">logout</a> --}}
     <!-- Heading -->
@@ -115,5 +134,7 @@
         <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
         <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
     </div> --}}
-
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 </ul>

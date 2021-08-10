@@ -13,6 +13,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/user', 'UserController');
     Route::resource('/client', 'ClientController');
+    Route::resource('/gender', 'GenderController');
 });
 
 // Auth::routes();
