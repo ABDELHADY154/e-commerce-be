@@ -20,7 +20,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients  =  Client::all();
+        return view('admin.Client.index', ['clients' => $clients]);
     }
 
     /**
@@ -30,7 +31,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.Client.create');
     }
 
     /**
@@ -41,7 +42,22 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'phone_number' => ['nullable'],
+            'password' => ['required', 'min:8'],
+        ]);
+
+        $client = Client::create(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
+                'password' => Hash::make($request->password),
+            ]
+        );
+        return redirect(route('client.index'));
     }
 
     /**
@@ -63,7 +79,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('admin.Client.edit', ['client' => $client]);
     }
 
     /**
@@ -75,7 +91,20 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'phone_number' => ['nullable'],
+            'password' => ['required', 'min:8'],
+        ]);
+        $client->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'password' => Hash::make($request->password),
+        ]);
+        $client->save();
+        return redirect(route('client.index'));
     }
 
     /**

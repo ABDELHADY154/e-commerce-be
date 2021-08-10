@@ -9,7 +9,8 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Admin</h1>
+    <h1 class="h3 mb-0 text-gray-800">Client</h1>
+    <a href="{{ route('client.create') }}" class="btn btn-primary">Create Client</a>
 </div>
 
 
@@ -24,17 +25,24 @@
                         <th>#ID</th>
                         <th>Name</th>
                         <th>Email</th>
-
+                        <th>Phone Number</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($clients as $client)
 
                     <tr>
-                        <td>{{$user->id}}</td>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
+                        <td>{{$client->id}}</td>
+                        <td>{{$client->name}}</td>
+                        <td>{{$client->email}}</td>
+                        <td>{{$client->phone_number}}</td>
+                        <td class="text-center">
+                            {{-- <a href="" class="btn btn-success">Show</a> --}}
+                            <a href="{{ route('client.edit',$client) }}" class="btn btn-warning">Edit</a>
+                            {{-- <a href="" class="btn btn-danger">Delete</a> --}}
+                        </td>
                     </tr>
 
                     @endforeach
@@ -45,10 +53,9 @@
         </div>
     </div>
 
+
+
 </div>
-
-
-
 @endsection
 
 @section('js')

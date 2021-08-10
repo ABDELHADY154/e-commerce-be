@@ -12,6 +12,7 @@ Auth::routes(['register' => false]);
 Route::middleware(['auth'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/user', 'UserController');
+    Route::resource('/client', 'ClientController');
 });
 
 // Auth::routes();
