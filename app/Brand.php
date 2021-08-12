@@ -5,16 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Gender extends Model
+class Brand extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
-        'gender_name', 'created_at'
+        'brand', 'brand_image', 'brand_desc', 'gender_id'
     ];
 
-    public function brands()
+    public function gender()
     {
-        return $this->hasMany(Brand::class);
+        return $this->belongsTo(Gender::class, 'gender_id');
     }
 }

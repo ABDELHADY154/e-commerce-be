@@ -71,13 +71,17 @@
             <i class="fas fa-users"></i>
             <span>Products</span>
         </a>
-        <div id="collapseThree" class="collapse {{ Route::currentRouteName() == 'gender.index' || Route::currentRouteName() == 'gender.index'? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseThree" class="collapse {{ Route::currentRouteName() == 'gender.index' || Route::currentRouteName() == 'brand.index'? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item {{ Route::currentRouteName() == 'gender.index'? 'active' : '' }}" href="{{ route('gender.index') }}">Gender</a>
+                <a class="collapse-item {{ Route::currentRouteName() == 'brand.index'? 'active' : '' }}" href="{{ route('brand.index') }}">Brand</a>
+
                 {{-- <a class="collapse-item {{ Route::currentRouteName() == 'client.index'? 'active' : '' }}" href="{{ route('client.index') }}">Client</a> --}}
             </div>
+
         </div>
+
     </li>
 
     {{-- <a href="{{route('logout')}}">logout</a> --}}
