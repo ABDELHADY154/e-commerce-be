@@ -23,4 +23,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/clientProfile', 'ClientController@getProfile')->name('client.get-profile');
     Route::post('/clientUpdateImage', 'ClientController@updateImage')->name('client.update-image');
     Route::get('/men-brands', 'API\BrandController@getMenBrands')->name('get.men.brands');
+    Route::get('/women-brands', 'API\BrandController@getWomenBrands')->name('get.women.brands');
 });

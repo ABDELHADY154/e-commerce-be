@@ -19,4 +19,11 @@ class BrandController extends Controller
         $brands = $gender->brands;
         return $this->ok((BrandResource::collection($brands))->resolve());
     }
+
+    public function getWomenBrands()
+    {
+        $gender = Gender::where('gender_name', 'Women')->first();
+        $brands = $gender->brands;
+        return $this->ok((BrandResource::collection($brands))->resolve());
+    }
 }
