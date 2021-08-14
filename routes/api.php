@@ -24,4 +24,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/clientUpdateImage', 'ClientController@updateImage')->name('client.update-image');
     Route::get('/men-brands', 'API\BrandController@getMenBrands')->name('get.men.brands');
     Route::get('/women-brands', 'API\BrandController@getWomenBrands')->name('get.women.brands');
+    Route::get('/brand-categories/{brandId}', 'API\CategoryController@getCategories')->name('get.brand.categories');
 });
