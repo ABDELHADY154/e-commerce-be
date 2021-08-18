@@ -11,6 +11,7 @@
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
     @include('parts.css')
+
 </head>
 <body>
     <div id="app">
@@ -54,7 +55,9 @@
 
     </div>
 
+
     @include('parts.js')
+
 </body>
 </html>
 {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
