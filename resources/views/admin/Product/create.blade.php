@@ -11,10 +11,7 @@
 
 {{-- <div class="container"> --}}
 <div class="card p-3">
-    {{-- @livewire('product-create-form') --}}
     <livewire:product-create-form />
-    {{-- @livewire('product-create-form') --}}
-
 </div>
 {{-- </div> --}}
 

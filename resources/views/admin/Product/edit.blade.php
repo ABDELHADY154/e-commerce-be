@@ -10,7 +10,8 @@
 
 <div class="container">
     <div class="card p-3">
-        @livewire('product-edit-form', ['model' => $product])
+        {{-- @livewire('product-edit-form', ['model' => $product]) --}}
+        <livewire:product-edit-form :model="{{$product}}" />
     </div>
 </div>
 
