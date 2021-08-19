@@ -14,4 +14,4 @@
 
 
 @yield('css')
-@livewireStyles
+<livewire:styles />
