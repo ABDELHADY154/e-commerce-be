@@ -18,8 +18,8 @@ class ProductResoource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'brand' => $this->category->brand->brand,
-            'price' => $this->price,
-            'total_price' => $this->total_price,
+            'price' => round($this->price, 2),
+            'total_price' => round($this->total_price, 2),
             'discount' => $this->discount,
             'images' => ProductImageResource::collection($this->images)
 
