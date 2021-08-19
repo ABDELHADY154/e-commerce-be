@@ -12,6 +12,6 @@ class ProductSizeSeeder extends Seeder
      */
     public function run()
     {
-        factory(ProductSize::class, 100)->create();
+        factory(ProductSize::class, 300)->create();
     }
 }
