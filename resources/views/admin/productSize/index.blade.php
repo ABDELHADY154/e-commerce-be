@@ -9,8 +9,8 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Product</h1>
-    <a href="{{ route('product.create') }}" class="btn btn-primary">Create Product</a>
+    <h1 class="h3 mb-0 text-gray-800">Size</h1>
+    <a href="{{ route('productSize.create') }}" class="btn btn-primary">Create Size</a>
 </div>
 
 
@@ -23,30 +23,25 @@
                 <thead>
                     <tr>
                         <th>#ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
+                        <th>Size</th>
                         <th>Quantity</th>
-                        <th>Discount</th>
-                        <th>Total Price</th>
+                        <th>Product</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($products as $product)
+                    @foreach ($productSizes as $size)
+
                     <tr>
-                        <td>{{$product->id}}</td>
-                        <td>
-                            {{$product->name}}
-                        </td>
-                        <td>{{$product->price}} EGP</td>
-                        <td>{{$product->quantity}}</td>
-                        <td>{{$product->discount}}%</td>
-                        <td>{{$product->total_price}} EGP</td>
+                        <td>{{$size->id}}</td>
+                        <td>{{$size->size}}</td>
+                        <td>{{ $size->quantity }}</td>
+                        <td>{{$size->product ? $size->product->name :''}}</td>
                         <td class="text-center">
                             {{-- <a href="" class="btn btn-success">Show</a> --}}
-                            <a href="{{ route('product.edit',$product) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('product.destroy',$product) }}" method="POST" class="d-inline-block">
+                            <a href="{{ route('productSize.edit',$size) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('productSize.destroy',$size) }}" method="POST" class="d-inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger">delete</button>

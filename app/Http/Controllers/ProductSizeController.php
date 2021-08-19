@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\ProductSize;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class ProductSizeController extends Controller
      */
     public function index()
     {
-        //
+        $productSizes = ProductSize::all();
+        return view('admin.productSize.index', ['productSizes' => $productSizes]);
     }
 
     /**
@@ -24,7 +26,8 @@ class ProductSizeController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        return view('admin.productSize.create', ['products' => $products]);
     }
 
     /**
@@ -35,7 +38,18 @@ class ProductSizeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_id' => ['required', 'integer', 'exists:products,id'],
+            'size' => ['required', 'string'],
+            'quantity' => ['required', 'integer', 'min:1']
+        ]);
+        $size = ProductSize::create($request->all());
+        $product = Product::find($request->product_id);
+        if ($product) {
+            $product->quantity = $product->quantity +  $request->quantity;
+            $product->save();
+        }
+        return redirect(route('productSize.index'));
     }
 
     /**
@@ -57,7 +71,8 @@ class ProductSizeController extends Controller
      */
     public function edit(ProductSize $productSize)
     {
-        //
+        $products = Product::all();
+        return view('admin.productSize.edit', ['productSize' => $productSize, 'products' => $products]);
     }
 
     /**
@@ -69,7 +84,21 @@ class ProductSizeController extends Controller
      */
     public function update(Request $request, ProductSize $productSize)
     {
-        //
+        $request->validate([
+            'product_id' => ['required', 'integer', 'exists:products,id'],
+            'size' => ['required', 'string'],
+            'quantity' => ['required', 'integer', 'min:1']
+        ]);
+        $product = Product::find($request->product_id);
+        if ($product) {
+            $product->quantity = $product->quantity -  $productSize->quantity;
+            $product->save();
+            $product->quantity = $product->quantity +  $request->quantity;
+            $product->save();
+        }
+        $productSize->update($request->all());
+        $productSize->save();
+        return redirect(route('productSize.index'));
     }
 
     /**
@@ -80,6 +109,10 @@ class ProductSizeController extends Controller
      */
     public function destroy(ProductSize $productSize)
     {
-        //
+        $product = Product::find($productSize->product_id);
+        $product->quantity -= $productSize->quantity;
+        $product->save();
+        $productSize->delete();
+        return redirect(route('productSize.index'));
     }
 }

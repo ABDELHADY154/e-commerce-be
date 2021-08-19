@@ -66,17 +66,18 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item {{ Route::currentRouteName() == 'brand.index' || Route::currentRouteName() == 'gender.index' || Route::currentRouteName() == 'category.index' || Route::currentRouteName() == 'product.index' ? 'active' : '' }}">
+    <li class="nav-item {{ Route::currentRouteName() == 'brand.index' || Route::currentRouteName() == 'gender.index' || Route::currentRouteName() == 'productSize.index' ||  Route::currentRouteName() == 'category.index' || Route::currentRouteName() == 'product.index' ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
             <i class="fas fa-shopping-cart"></i> <span>Products</span>
         </a>
-        <div id="collapseThree" class="collapse {{ Route::currentRouteName() == 'gender.index' || Route::currentRouteName() == 'brand.index' || Route::currentRouteName() == 'category.index' || Route::currentRouteName() == 'product.index'  ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseThree" class="collapse {{ Route::currentRouteName() == 'gender.index' || Route::currentRouteName() == 'productSize.index' || Route::currentRouteName() == 'brand.index' || Route::currentRouteName() == 'category.index' || Route::currentRouteName() == 'product.index'  ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item {{ Route::currentRouteName() == 'gender.index'? 'active' : '' }}" href="{{ route('gender.index') }}">Gender</a>
                 <a class="collapse-item {{ Route::currentRouteName() == 'brand.index'? 'active' : '' }}" href="{{ route('brand.index') }}">Brand</a>
                 <a class="collapse-item {{ Route::currentRouteName() == 'category.index'? 'active' : '' }}" href="{{ route('category.index') }}">Category</a>
                 <a class="collapse-item {{ Route::currentRouteName() == 'product.index'? 'active' : '' }}" href="{{ route('product.index') }}">Products</a>
+                <a class="collapse-item {{ Route::currentRouteName() == 'productSize.index' ? 'active' : '' }}" href="{{ route('productSize.index') }}">Product Sizes</a>
 
                 {{-- <a class="collapse-item {{ Route::currentRouteName() == 'client.index'? 'active' : '' }}" href="{{ route('client.index') }}">Client</a> --}}
             </div>

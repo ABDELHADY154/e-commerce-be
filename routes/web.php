@@ -16,4 +16,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/brand', 'BrandController')->except(['edit', 'update', 'show']);
     Route::resource('/category', 'CategoryController')->except(['edit', 'update', 'show']);
     Route::resource('/product', 'ProductController');
+    Route::resource('/productSize', 'ProductSizeController');
 });
