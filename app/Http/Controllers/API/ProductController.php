@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API;
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Brand;
 use App\Category;
+use App\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\ProductResoource;
+use App\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -33,5 +35,42 @@ class ProductController extends Controller
     {
         $category = Category::find($catId);
         return $this->ok(ProductResoource::collection($category->products)->resolve());
+    }
+
+    public function favoriteProduct(Request $request)
+    {
+        $request->validate([
+            'product_id' => ['required', 'exists:products,id']
+        ]);
+        $client = Client::where('id', auth('api')->id())->first();
+        $product = Product::find($request->product_id);
+        if ($product) {
+            $client->favorite($product);
+        }
+        return $this->ok(['product favorited successfully']);
+    }
+
+    public function unFavoriteProduct(Request $request)
+    {
+        $request->validate([
+            'product_id' => ['required', 'exists:products,id']
+        ]);
+        $client = Client::where('id', auth('api')->id())->first();
+        $product = Product::find($request->product_id);
+        if ($product) {
+            $client->unfavorite($product);
+        }
+        return $this->ok(['product favorited successfully']);
+    }
+
+    public function getFavoritedProducts()
+    {
+        $products = [];
+        $client = Client::find(auth('api')->id());
+        $favorites = $client->favorites;
+        foreach ($favorites as $fav) {
+            $products[] = Product::find($fav->favoriteable_id);
+        }
+        return $this->ok(ProductResoource::collection($products)->resolve());
     }
 }

@@ -27,4 +27,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/brand-categories/{brandId}', 'API\CategoryController@getCategories')->name('get.brand.categories');
     Route::get('/allProduct/{brandId}', 'API\ProductController@allProducts')->name('get.all.products.of.brand');
     Route::get('/categoryProducts/{catId}', 'API\ProductController@categoryProducts')->name('get.all.products.of.category');
+    Route::post('/favorite', 'API\ProductController@favoriteProduct')->name('favorite.product');
+    Route::post('/unfavorite', 'API\ProductController@unFavoriteProduct')->name('unfavorite.product');
+    Route::get('/favorite', 'API\ProductController@getFavoritedProducts')->name('get.favorite.product');
 });
