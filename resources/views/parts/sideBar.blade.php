@@ -2,10 +2,12 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
-        {{-- <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-        </div> --}}
-        <div class="sidebar-brand-text mx-3">E - Commerce</div>
+        <div class="sidebar-brand-icon ">
+            {{-- <i class="fas fa-laugh-wink"></i> --}}
+            <img src="/logo/logo.png" alt="" style="width: 4rem;height:4rem">
+        </div>
+
+        <div class="sidebar-brand-text">Beam</div>
     </a>
 
     <!-- Divider -->

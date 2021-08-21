@@ -17,7 +17,9 @@
 <!-- Page level custom scripts -->
 <script src="/admin/js/demo/chart-area-demo.js"></script>
 <script src="/admin/js/demo/chart-pie-demo.js"></script>
-<livewire:scripts />
+{{-- <livewire:scripts /> --}}
+@livewireScripts
+{{-- @stack('scripts') --}}
 @stack('scripts')
 <script src="{{ asset('js/app.js') }}"></script>
 @yield('js')

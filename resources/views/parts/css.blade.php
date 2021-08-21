@@ -3,6 +3,7 @@
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+<link rel="icon" href="/logo/logo.png" type="image/gif" sizes="16x16">
 
 <!-- Styles -->
 <!-- Custom fonts for this template-->
@@ -14,4 +15,5 @@
 
 
 @yield('css')
-<livewire:styles />
+{{-- <livewire:styles /> --}}
+@livewireStyles
