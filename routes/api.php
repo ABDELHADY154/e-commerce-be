@@ -30,4 +30,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/favorite', 'API\ProductController@favoriteProduct')->name('favorite.product');
     Route::post('/unfavorite', 'API\ProductController@unFavoriteProduct')->name('unfavorite.product');
     Route::get('/favorite', 'API\ProductController@getFavoritedProducts')->name('get.favorite.product');
+    Route::get('/product/{id}', 'API\ProductController@getProduct')->name('get.product');
+    Route::get('/newproduct', 'API\ProductController@getLatestNewProducts')->name('get.latest.new.products');
+    Route::get('/saleproduct', 'API\ProductController@getLatestSaleProducts')->name('get.latest.sale.products');
 });

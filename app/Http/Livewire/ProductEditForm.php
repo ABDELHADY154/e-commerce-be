@@ -40,9 +40,9 @@ class ProductEditForm extends FormComponent
             'desc' => $this->form_data['desc'],
             'category_id' => $this->form_data['category_id'],
             'price' => $this->form_data['price'],
-            'discount' => $this->form_data['discount'],
+            'discount' => $this->form_data['discount'] > 0 ? $this->form_data['discount'] : 0,
             'total_price' => $this->form_data['price'] - ($this->form_data['price'] * ($this->form_data['discount'] / 100)),
-            'sale' => $this->form_data['discount'] !== 0 ? true : false
+            'sale' => $this->form_data['discount'] == 0 ? false : true
         ]);
     }
 

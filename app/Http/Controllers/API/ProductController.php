@@ -73,4 +73,25 @@ class ProductController extends Controller
         }
         return $this->ok(ProductResoource::collection($products)->resolve());
     }
+
+    public function getProduct(Int $id)
+    {
+        $product = Product::find($id);
+        if ($product) {
+            return $this->ok((new ProductResoource($product))->resolve());
+        }
+        return $this->notFound(['product not found']);
+    }
+
+    public function getLatestNewProducts()
+    {
+        $products = Product::orderBy('id', 'desc')->take(10)->get();
+        return $this->ok(ProductResoource::collection($products)->resolve());
+    }
+
+    public function getLatestSaleProducts()
+    {
+        $products = Product::where('sale', true)->orderBy('id', 'desc')->take(10)->get();
+        return $this->ok(ProductResoource::collection($products)->resolve());
+    }
 }

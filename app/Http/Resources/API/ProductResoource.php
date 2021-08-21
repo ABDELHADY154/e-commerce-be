@@ -27,7 +27,8 @@ class ProductResoource extends JsonResource
             'sale' => $this->sale == 1 ? true : false,
             'discount' => $this->discount,
             'favourited' => $client->hasFavorited($product),
-            'images' => ProductImageResource::collection($this->images)
+            'images' => ProductImageResource::collection($this->images),
+            'sizes' => ProductSizeResource::collection($this->sizes)
 
         ];
     }
