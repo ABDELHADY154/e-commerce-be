@@ -15,4 +15,9 @@ class Client extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'phone_number', 'image'
     ];
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

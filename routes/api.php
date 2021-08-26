@@ -33,4 +33,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/product/{id}', 'API\ProductController@getProduct')->name('get.product');
     Route::get('/newproduct', 'API\ProductController@getLatestNewProducts')->name('get.latest.new.products');
     Route::get('/saleproduct', 'API\ProductController@getLatestSaleProducts')->name('get.latest.sale.products');
+    Route::post('/addtocart', 'API\CartController@addToCart')->name('add.to.cart');
+    Route::get('/cart', 'API\CartController@cartList')->name('cart.list');
+    Route::post('/updateCart', 'API\CartController@updateCart')->name('update.to.cart');
+    Route::post('/deleteItem', 'API\CartController@deleteCartItem')->name('delete.to.cart');
 });
