@@ -17,4 +17,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/category', 'CategoryController')->except(['edit', 'update', 'show']);
     Route::resource('/product', 'ProductController');
     Route::resource('/productSize', 'ProductSizeController');
+    Route::resource('/clientAddress', 'ClientAddressController');
 });
