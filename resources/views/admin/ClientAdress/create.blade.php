@@ -9,7 +9,7 @@
 </div>
 
 <div class="card p-3">
-    <form class="user" method="POST" action="{{route('clientAdress.store')}}">
+    <form class="user" method="POST" action="{{route('clientAddress.store')}}">
         @csrf
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
