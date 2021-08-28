@@ -39,7 +39,7 @@
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item {{ Route::currentRouteName() == 'user.index'? 'active' : '' }}" href="{{ route('user.index') }}">Admin</a>
                 <a class="collapse-item {{ Route::currentRouteName() == 'client.index'? 'active' : '' }}" href="{{ route('client.index') }}">Client</a>
-                <a class="collapse-item {{ Route::currentRouteName() == 'clientAddress.index'? 'active' : '' }}" href="{{ route('clientAddress.index') }}">Client Adress</a>
+                <a class="collapse-item {{ Route::currentRouteName() == 'clientAddress.index'? 'active' : '' }}" href="{{ route('clientAddress.index') }}">Client Address</a>
 
             </div>
         </div>
