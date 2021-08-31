@@ -16,6 +16,9 @@ class ClientAddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function index()
     {
         $client = Client::find(auth('api')->id());
@@ -41,19 +44,40 @@ class ClientAddressController extends Controller
             "street_name" => ['required'],
             "default" => ['boolean']
         ]);
-        $address = ClientAddress::create([
-            'name' => $request->name,
-            'city' => $request->city,
-            'building_no' => $request->building_no,
-            "floor" => $request->floor,
-            "appartment_no" => $request->appartment_no,
-            "region" => $request->region,
-            "street_name" => $request->street_name,
-            "default" => $request->default ? true : false,
-            "client_id" => auth('api')->id(),
-        ]);
-
-        return $this->created(['address' => $address]);
+        if ($request->default == true) {
+            $client = Client::find(auth('api')->id());
+            foreach ($client->addresses() as $item) {
+                $item->update([
+                    'default' => false
+                ]);
+                $item->save();
+            }
+            $address = ClientAddress::create([
+                'name' => $request->name,
+                'city' => $request->city,
+                'building_no' => $request->building_no,
+                "floor" => $request->floor,
+                "appartment_no" => $request->appartment_no,
+                "region" => $request->region,
+                "street_name" => $request->street_name,
+                "default" => true,
+                "client_id" => auth('api')->id(),
+            ]);
+            return $this->created(['address' => $address]);
+        } else {
+            $address = ClientAddress::create([
+                'name' => $request->name,
+                'city' => $request->city,
+                'building_no' => $request->building_no,
+                "floor" => $request->floor,
+                "appartment_no" => $request->appartment_no,
+                "region" => $request->region,
+                "street_name" => $request->street_name,
+                "default" => false,
+                "client_id" => auth('api')->id(),
+            ]);
+            return $this->created(['address' => $address]);
+        }
     }
 
     /**
@@ -64,7 +88,11 @@ class ClientAddressController extends Controller
      */
     public function show($id)
     {
-        //
+        $address = ClientAddress::find($id);
+        if ($address) {
+            return $this->ok(['address' => $address]);
+        }
+        return $this->notFound(['address not found']);
     }
 
     /**
@@ -89,17 +117,37 @@ class ClientAddressController extends Controller
         $client = Client::find(auth('api')->id());
         $address = $client->addresses()->find($id);
         if ($address) {
-            $address->update([
-                'name' => $request->name,
-                'city' => $request->city,
-                'building_no' => $request->building_no,
-                "floor" => $request->floor,
-                "appartment_no" => $request->appartment_no,
-                "region" => $request->region,
-                "street_name" => $request->street_name,
-                "default" => $request->default ? true : false,
-            ]);
-            return $this->created(['address' => $address]);
+            if ($request->default == true) {
+                foreach ($client->addresses() as $item) {
+                    $item->update([
+                        'default' => false
+                    ]);
+                    $item->save();
+                }
+                $address->update([
+                    'name' => $request->name,
+                    'city' => $request->city,
+                    'building_no' => $request->building_no,
+                    "floor" => $request->floor,
+                    "appartment_no" => $request->appartment_no,
+                    "region" => $request->region,
+                    "street_name" => $request->street_name,
+                    "default" => true,
+                ]);
+                return $this->created(['address' => $address]);
+            } else {
+                $address->update([
+                    'name' => $request->name,
+                    'city' => $request->city,
+                    'building_no' => $request->building_no,
+                    "floor" => $request->floor,
+                    "appartment_no" => $request->appartment_no,
+                    "region" => $request->region,
+                    "street_name" => $request->street_name,
+                    "default" => false,
+                ]);
+                return $this->created(['address' => $address]);
+            }
         }
         return $this->notFound();
     }
@@ -119,5 +167,11 @@ class ClientAddressController extends Controller
             return $this->ok(['deleted']);
         }
         return $this->notFound();
+    }
+    public function getDefaultAddress()
+    {
+        $client = Client::find(auth('api')->id());
+        $address = $client->addresses()->where('default', true)->first();
+        return $this->ok(['address' => $address]);
     }
 }

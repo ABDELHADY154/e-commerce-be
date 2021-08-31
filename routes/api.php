@@ -37,5 +37,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/cart', 'API\CartController@cartList')->name('cart.list');
     Route::post('/updateCart', 'API\CartController@updateCart')->name('update.to.cart');
     Route::post('/deleteItem', 'API\CartController@deleteCartItem')->name('delete.to.cart');
-    Route::apiResource('/clientAddress', 'API\ClientAddressController')->except(['show']);
+    Route::apiResource('/clientAddress', 'API\ClientAddressController');
+    Route::get('/defaultAddress', 'API\ClientAddressController@getDefaultAddress')->name('default.address');
 });
