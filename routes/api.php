@@ -39,4 +39,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/deleteItem', 'API\CartController@deleteCartItem')->name('delete.to.cart');
     Route::apiResource('/clientAddress', 'API\ClientAddressController');
     Route::get('/defaultAddress', 'API\ClientAddressController@getDefaultAddress')->name('default.address');
+    Route::post('/checkoutorder', 'API\OrderController@checkout')->name('checkout.order');
 });

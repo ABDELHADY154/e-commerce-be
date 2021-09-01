@@ -46,7 +46,7 @@ class ClientAddressController extends Controller
         ]);
         if ($request->default == true) {
             $client = Client::find(auth('api')->id());
-            foreach ($client->addresses() as $item) {
+            foreach ($client->addresses as $item) {
                 $item->update([
                     'default' => false
                 ]);
@@ -118,7 +118,7 @@ class ClientAddressController extends Controller
         $address = $client->addresses()->find($id);
         if ($address) {
             if ($request->default == true) {
-                foreach ($client->addresses() as $item) {
+                foreach ($client->addresses as $item) {
                     $item->update([
                         'default' => false
                     ]);

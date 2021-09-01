@@ -32,4 +32,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Cart::class, 'cart_product')->withPivot('id', 'size_id', 'quantity');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_product')->withPivot('id', 'size_id', 'quantity');
+    }
 }
