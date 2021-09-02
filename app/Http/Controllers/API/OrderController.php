@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Client;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\API\OrderResource;
 use App\Order;
 use App\Product;
 use App\ProductSize;
@@ -48,10 +49,57 @@ class OrderController extends Controller
                     $product->quantity -= $item["quantity"];
                     $product->save();
                 }
+                $cart = $client->carts()->first();
+                if ($cart) {
+                    $cart->products()->detach();
+                    $cart->quantity = 0;
+                    $cart->total_price = 0;
+                    $cart->save();
+                }
                 return   $this->created(['order' => $order]);
             }
             return $this->notFound(['address' => 'address not found']);
         }
         return $this->notFound(['client' => 'client not found']);
+    }
+
+    public function getOrder($id)
+    {
+        $client = Client::find(auth('api')->id());
+
+        $order = $client->orders()->find($id);
+        if ($order) {
+            return $this->ok((new OrderResource($order))->resolve());
+        }
+    }
+
+    public function getOrderedStatus()
+    {
+        $client = Client::find(auth('api')->id());
+
+        $orders = $client->orders()->where('status', 'ordered')->get();
+        if ($orders) {
+            return $this->ok(OrderResource::collection($orders)->resolve());
+        }
+    }
+
+    public function getProcessStatus()
+    {
+        $client = Client::find(auth('api')->id());
+
+        $orders = $client->orders()->where('status', 'processing')->orWhere('status', 'on the way')->get();
+        if ($orders) {
+            return $this->ok(OrderResource::collection($orders)->resolve());
+        }
+    }
+
+    public function getDeliveredStatus()
+    {
+        $client = Client::find(auth('api')->id());
+
+        $orders = $client->orders()->where('status', 'delivered')->get();
+        if ($orders) {
+            return $this->ok(OrderResource::collection($orders)->resolve());
+        }
     }
 }

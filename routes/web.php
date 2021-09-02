@@ -18,4 +18,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/product', 'ProductController');
     Route::resource('/productSize', 'ProductSizeController');
     Route::resource('/clientAddress', 'ClientAddressController');
+    Route::resource('/order', 'OrderController');
+    Route::get('/processOrder/{id}', 'OrderController@processOrder')->name('process.order');
+    Route::get('/wayorder/{id}', 'OrderController@wayorder')->name('way.order');
+    Route::get('/deliveredorder/{id}', 'OrderController@deliverOrder')->name('deliver.order');
+
+    Route::get('/processOrderIndex/{id}', 'OrderController@processOrderIndex')->name('process.order.index');
+    Route::get('/wayorderIndex/{id}', 'OrderController@wayorderIndex')->name('way.order.index');
+    Route::get('/deliveredorderIndex/{id}', 'OrderController@deliverOrderIndex')->name('deliver.order.index');
 });

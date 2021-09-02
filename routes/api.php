@@ -40,4 +40,8 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('/clientAddress', 'API\ClientAddressController');
     Route::get('/defaultAddress', 'API\ClientAddressController@getDefaultAddress')->name('default.address');
     Route::post('/checkoutorder', 'API\OrderController@checkout')->name('checkout.order');
+    Route::get('/order/{id}', 'API\OrderController@getOrder')->name('get.order');
+    Route::get('/statusordered', 'API\OrderController@getOrderedStatus')->name('get.ordered.status');
+    Route::get('/statusProcessed', 'API\OrderController@getProcessStatus')->name('get.processed.status');
+    Route::get('/statusdelivered', 'API\OrderController@getDeliveredStatus')->name('get.delivered.status');
 });

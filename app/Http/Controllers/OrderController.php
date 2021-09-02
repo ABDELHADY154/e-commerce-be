@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class OrderController extends Controller
 {
@@ -14,7 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        return view('admin.Order.index', ['orders' => $orders]);
     }
 
     /**
@@ -46,7 +48,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('admin.Order.show', ['order' => $order]);
     }
 
     /**
@@ -81,5 +83,64 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function processOrder($id)
+    {
+        $order = Order::find($id);
+        if ($order) {
+            $order->status = "processing";
+            $order->save();
+            return redirect(route('order.show', $order));
+        }
+    }
+
+    public function wayorder($id)
+    {
+        $order = Order::find($id);
+        if ($order) {
+            $order->status = "on the way";
+            $order->save();
+            return redirect(route('order.show', $order));
+        }
+    }
+
+    public function deliverOrder($id)
+    {
+        $order = Order::find($id);
+        if ($order) {
+            $order->status = "delivered";
+            $order->save();
+            return redirect(route('order.show', $order));
+        }
+    }
+    public function processOrderIndex($id)
+    {
+        $order = Order::find($id);
+        if ($order) {
+            $order->status = "processing";
+            $order->save();
+            return redirect(route('order.index'));
+        }
+    }
+
+    public function wayorderIndex($id)
+    {
+        $order = Order::find($id);
+        if ($order) {
+            $order->status = "on the way";
+            $order->save();
+            return redirect(route('order.index'));
+        }
+    }
+
+    public function deliverOrderIndex($id)
+    {
+        $order = Order::find($id);
+        if ($order) {
+            $order->status = "delivered";
+            $order->save();
+            return redirect(route('order.index'));
+        }
     }
 }
