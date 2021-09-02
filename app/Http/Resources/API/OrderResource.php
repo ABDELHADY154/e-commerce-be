@@ -19,7 +19,7 @@ class OrderResource extends JsonResource
             'order_num' => $this->order_num,
             'status' => $this->status,
             'quantity' => count($this->products),
-            'created_at' => $this->created_at,
+            'created_at' => date("Y-m-d", $this->created_at),
             'price' => $this->price,
             'delivery' => $this->delivery,
             'total_price' => $this->total_price,
