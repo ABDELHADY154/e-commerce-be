@@ -46,11 +46,12 @@ class CartController extends Controller
             if ($item->pivot->product_id == $request->product_id && $item->pivot->cart_id == $cart->id) {
 
                 if ($item->pivot->size_id == $request->size_id) {
-                    $cart->quantity = ($cart->quantity - $item->pivot->quantity) + $request->quantity;
-                    $cart->total_price = ($cart->total_price - ($item->pivot->quantity * $product->total_price)) + ($request->quantity * $product->total_price);
+                    // $cart->quantity = ($cart->quantity - $item->pivot->quantity) + $request->quantity;
+                    $cart->quantity = $cart->quantity  + $request->quantity;
+                    $cart->total_price = $cart->total_price + ($request->quantity * $product->total_price);  //($cart->total_price - ($item->pivot->quantity * $product->total_price)) + ($request->quantity * $product->total_price);
                     $cart->save();
                     $cart->products()->updateExistingPivot($request->product_id, [
-                        'quantity' => $request->quantity,
+                        'quantity' => $request->quantity + $item->pivot->quantity,
                         'size_id' => $request->size_id,
                         'product_id' => $request->product_id,
                     ]);
@@ -95,12 +96,20 @@ class CartController extends Controller
     {
         $request->validate([
             'product_id' => ['required', 'exists:products,id'],
-            'quantity' => ['required', 'integer', 'min:1',],
+            // 'quantity' => ['required', 'integer', 'min:1',],
             "size_id" => ['required', 'exists:product_sizes,id']
         ]);
         $client = Client::find(auth('api')->id());
         $product = Product::find($request->product_id);
-
+        if ($productSize = ProductSize::where('id', $request->size_id)->first()) {
+            $quantity = $productSize->quantity;
+        }
+        $request->validate([
+            'quantity' => ['required', 'integer', 'min:1', "max:${quantity}"],
+        ]);
+        // $request->validate([
+        //     'quantity' => ['required', 'integer', 'min:1', "max:${quantity}"],
+        // ]);
         if (!$client->carts->first()) {
             $client->carts()->create([
                 'quantity' => 0,
@@ -135,6 +144,7 @@ class CartController extends Controller
         if ($cart) {
             $cartProduct = DB::table('cart_product')->where('product_id', $product->id)->where('size_id', $request->size_id)->first();
             if ($cartProduct) {
+                // dd($cartProduct);
                 $cart->quantity -= $cartProduct->quantity;
                 $cart->total_price -= ($cartProduct->quantity * $product->total_price);
                 $cart->save();
