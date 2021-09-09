@@ -46,6 +46,9 @@ class CartController extends Controller
             if ($item->pivot->product_id == $request->product_id && $item->pivot->cart_id == $cart->id) {
 
                 if ($item->pivot->size_id == $request->size_id) {
+                    if ($cart->quantity + $request->quantity > $productSize->quantity) {
+                        return $this->forbidden(["Exceeded the available quantity"]);
+                    }
                     // $cart->quantity = ($cart->quantity - $item->pivot->quantity) + $request->quantity;
                     $cart->quantity = $cart->quantity  + $request->quantity;
                     $cart->total_price = $cart->total_price + ($request->quantity * $product->total_price);  //($cart->total_price - ($item->pivot->quantity * $product->total_price)) + ($request->quantity * $product->total_price);
@@ -121,6 +124,9 @@ class CartController extends Controller
         $cart = Cart::where('client_id', $client->id)->first();
         foreach ($cart->products as $item) {
             if ($item->pivot->product_id == $request->product_id && $item->pivot->cart_id == $cart->id && $item->pivot->size_id == $request->size_id) {
+                if ($cart->quantity + $request->quantity > $productSize->quantity) {
+                    return $this->forbidden(["Exceeded the available quantity"]);
+                }
                 $cart->quantity = ($cart->quantity - $item->pivot->quantity) + $request->quantity;
                 $cart->total_price = ($cart->total_price - ($item->pivot->quantity * $product->total_price)) + ($request->quantity * $product->total_price);
                 $cart->save();
