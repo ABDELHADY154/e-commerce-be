@@ -44,4 +44,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/statusordered', 'API\OrderController@getOrderedStatus')->name('get.ordered.status');
     Route::get('/statusProcessed', 'API\OrderController@getProcessStatus')->name('get.processed.status');
     Route::get('/statusdelivered', 'API\OrderController@getDeliveredStatus')->name('get.delivered.status');
+    Route::get('/ads', 'AdController@getAllImages')->name('get.all.ads');
 });
