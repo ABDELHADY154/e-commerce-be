@@ -12,13 +12,13 @@ class AdSeeder extends Seeder
      */
     public function run()
     {
-        Ad::create([
-            'image' => 'p1.jpeg',
-        ]);
+        // Ad::create([
+        //     'image' => 'p1.jpeg',
+        // ]);
 
-        Ad::create([
-            'image' => 'p2.jpeg',
-        ]);
+        // Ad::create([
+        //     'image' => 'p2.jpeg',
+        // ]);
 
         Ad::create([
             'image' => 'p3.jpeg',
