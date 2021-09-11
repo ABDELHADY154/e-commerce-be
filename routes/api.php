@@ -45,4 +45,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/statusProcessed', 'API\OrderController@getProcessStatus')->name('get.processed.status');
     Route::get('/statusdelivered', 'API\OrderController@getDeliveredStatus')->name('get.delivered.status');
     Route::get('/ads', 'AdController@getAllImages')->name('get.all.ads');
+    Route::put('/updateclientdata', 'ClientController@updateClientData')->name('update.client.data');
+    Route::put('/changePassword', 'ClientController@changePass')->name('change.password.client');
 });

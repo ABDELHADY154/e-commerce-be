@@ -17,6 +17,7 @@ class ClientProfileResource extends JsonResource
         return [
             'name' => $this->name,
             'email' => $this->email,
+            'phone_number' => $this->phone_number,
             'image' => asset('storage/clientImages/' . $this->image),
         ];
     }

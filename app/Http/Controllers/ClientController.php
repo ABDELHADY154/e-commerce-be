@@ -182,4 +182,37 @@ class ClientController extends Controller
         }
         return $this->notFound(['message' => 'File Not Found']);
     }
+
+    public function updateClientData(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'phone_number' => ['required', 'numeric']
+        ]);
+        $client = Client::find(auth('api')->id());
+        if ($client) {
+            $client->update($request->all());
+            $client->save();
+            return $this->created((new ClientProfileResource($client))->resolve());
+        }
+        return $this->notFound(['client not found']);
+    }
+    public function changePass(Request $request)
+    {
+        $request->validate([
+            'old_password' => ['required', 'min:8'],
+            'password' => ['required', 'min:8', 'confirmed']
+        ]);
+        $client = Client::find(auth('api')->id());
+        if ($client) {
+            if (Hash::check($request->old_password, $client->password)) {
+                $client->password = Hash::make($request->password);
+                $client->save();
+                return $this->created((new ClientProfileResource($client))->resolve());
+            }
+            return $this->forbidden(['old password is not valid']);
+        }
+        return $this->notFound(['client not found']);
+    }
 }
