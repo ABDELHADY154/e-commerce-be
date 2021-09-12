@@ -59,7 +59,7 @@ class ExpoController extends Controller
 
         $token = $request->get('expo_token');
 
-        $interest = $this->expoChannel->interestName(Auth::user());
+        $interest = $this->expoChannel->interestName(auth('api')->user());
 
         try {
             $this->expoChannel->expo->subscribe($interest, $token);

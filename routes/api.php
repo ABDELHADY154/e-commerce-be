@@ -18,15 +18,7 @@ Route::post('/clientLogin', 'ClientController@login')->name('client.login');
 Route::post('/clientRegister', 'ClientController@register')->name('client.register');
 Route::post('/resetPass', 'ForgetPasswordController@forgot')->name('client.forgetPassword');
 Route::post('/resetVerify', 'ForgetPasswordController@verify')->name('client.verify');
-Route::post('subscribe', [
-    'as'    =>  'register-interest',
-    'uses'  =>  'ExpoController@subscribe',
-]);
 
-Route::post('unsubscribe', [
-    'as'    =>  'remove-interest',
-    'uses'  =>  'ExpoController@unsubscribe',
-]);
 Route::middleware('auth:api')->group(function () {
     Route::get('/clientProfile', 'ClientController@getProfile')->name('client.get-profile');
     Route::post('/clientUpdateImage', 'ClientController@updateImage')->name('client.update-image');
@@ -55,4 +47,14 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/ads', 'AdController@getAllImages')->name('get.all.ads');
     Route::put('/updateclientdata', 'ClientController@updateClientData')->name('update.client.data');
     Route::put('/changePassword', 'ClientController@changePass')->name('change.password.client');
+
+    Route::post('subscribe', [
+        'as'    =>  'register-interest',
+        'uses'  =>  'ExpoController@subscribe',
+    ]);
+
+    Route::post('unsubscribe', [
+        'as'    =>  'remove-interest',
+        'uses'  =>  'ExpoController@unsubscribe',
+    ]);
 });
