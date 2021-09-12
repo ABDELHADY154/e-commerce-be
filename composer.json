@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2.5|^8.0",
         "aelnemr/api-response": "^1.2",
+        "alymosul/laravel-exponent-push-notifications": "^2.4",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.3",
