@@ -19,8 +19,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.4",
         "livewire/livewire": "^2.5",
-        "overtrue/laravel-favorite": "^4.0",
-        "relative/laravel-expo-push-notifications": "^1.0"
+        "overtrue/laravel-favorite": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
