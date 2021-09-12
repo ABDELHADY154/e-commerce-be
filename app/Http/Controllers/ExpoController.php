@@ -61,22 +61,22 @@ class ExpoController extends Controller
 
         $interest = $this->expoChannel->interestName(auth('api')->user());
 
-        // try {
-        $this->expoChannel->expo->subscribe($interest, $token);
-        // } catch (\Exception $e) {
-        //     // return JsonResponse::create([
-        //     //     'status'    => 'failed',
-        //     //     'error'     =>  [
-        //     //         'message' => $e->getMessage(),
-        //     //     ],
-        //     // ], 500);
-        //     return $this->badRequest([
-        //         'status'    => 'failed',
-        //         'error'     =>  [
-        //             'message' => $e->getMessage(),
-        //         ],
-        //     ]);
-        // }
+        try {
+            $this->expoChannel->expo->subscribe($interest, $token);
+        } catch (\Exception $e) {
+            // return JsonResponse::create([
+            //     'status'    => 'failed',
+            //     'error'     =>  [
+            //         'message' => $e->getMessage(),
+            //     ],
+            // ], 500);
+            return $this->badRequest([
+                'status'    => 'failed',
+                'error'     =>  [
+                    'message' => $e->getMessage(),
+                ],
+            ]);
+        }
 
         // return JsonResponse::create([
         //     'status'    =>  'succeeded',
