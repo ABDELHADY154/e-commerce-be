@@ -6,6 +6,7 @@ use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\OrderResource;
+use App\Notifications\AccountApproved;
 use App\Order;
 use App\Product;
 use App\ProductSize;
@@ -69,6 +70,7 @@ class OrderController extends Controller
                     $cart->total_price = 0;
                     $cart->save();
                 }
+                $client->notify(new AccountApproved(['service' => 'client']));
                 return   $this->created(['order' => $order]);
             }
             return $this->notFound(['address' => 'address not found']);

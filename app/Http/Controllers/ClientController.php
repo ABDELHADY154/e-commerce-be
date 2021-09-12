@@ -151,7 +151,7 @@ class ClientController extends Controller
             'phone_number' => $request->phone_number
 
         ]);
-        $client->notify(new AccountApproved(['service' => 'client']));
+
         $token = $client->createToken('Auth Token')->accessToken;
         return $this->ok((new ClientAuthResource(['token' => $token, 'client' => $client]))->resolve());
     }
