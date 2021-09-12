@@ -216,4 +216,16 @@ class ClientController extends Controller
         }
         return $this->notFound(['client not found']);
     }
+
+    public function sub(Request $request)
+    {
+        // dd($request->all());
+        $token = $request->input('expo_token');
+        $client = Client::find(auth('api')->id());
+        $client->pushTokens()->firstOrCreate(
+            ['token' => $token],
+            ['token' => $token],
+        );
+        return $this->ok();
+    }
 }

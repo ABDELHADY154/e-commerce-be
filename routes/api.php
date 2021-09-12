@@ -47,4 +47,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/ads', 'AdController@getAllImages')->name('get.all.ads');
     Route::put('/updateclientdata', 'ClientController@updateClientData')->name('update.client.data');
     Route::put('/changePassword', 'ClientController@changePass')->name('change.password.client');
+    Route::post('/subscribe', 'ClientController@sub')->name('sub.client');
 });

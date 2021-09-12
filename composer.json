@@ -10,7 +10,6 @@
     "require": {
         "php": "^7.2.5|^8.0",
         "aelnemr/api-response": "^1.2",
-        "alymosul/laravel-exponent-push-notifications": "^2.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.3",
@@ -20,7 +19,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.4",
         "livewire/livewire": "^2.5",
-        "overtrue/laravel-favorite": "^4.0"
+        "overtrue/laravel-favorite": "^4.0",
+        "relative/laravel-expo-push-notifications": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

@@ -7,6 +7,7 @@ use App\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\OrderResource;
 use App\Notifications\AccountApproved;
+use App\Notifications\NewOrder;
 use App\Order;
 use App\Product;
 use App\ProductSize;
@@ -70,7 +71,7 @@ class OrderController extends Controller
                     $cart->total_price = 0;
                     $cart->save();
                 }
-                $client->notify(new AccountApproved(['service' => 'client']));
+                $client->notify(new NewOrder(['order' => $order]));
                 return   $this->created(['order' => $order]);
             }
             return $this->notFound(['address' => 'address not found']);
