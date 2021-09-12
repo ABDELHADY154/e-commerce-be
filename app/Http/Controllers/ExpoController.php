@@ -1,6 +1,7 @@
 <?php
 
-namespace NotificationChannels\ExpoPushNotifications\Http;
+// namespace NotificationChannels\ExpoPushNotifications\Http;
+namespace App\Http\Controllers;
 
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use Illuminate\Http\JsonResponse;
