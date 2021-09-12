@@ -2,6 +2,7 @@
 
 namespace NotificationChannels\ExpoPushNotifications\Http;
 
+use AElnemr\RestFullResponse\CoreJsonResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -11,6 +12,7 @@ use NotificationChannels\ExpoPushNotifications\ExpoChannel;
 
 class ExpoController extends Controller
 {
+    use CoreJsonResponse;
     /**
      * @var ExpoChannel
      */
@@ -40,12 +42,18 @@ class ExpoController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return JsonResponse::create([
+            // return JsonResponse::create([
+            //     'status' => 'failed',
+            //     'error' => [
+            //         'message' => 'Expo Token is required',
+            //     ],
+            // ], 422);
+            return $this->invalidRequest([
                 'status' => 'failed',
                 'error' => [
                     'message' => 'Expo Token is required',
                 ],
-            ], 422);
+            ]);
         }
 
         $token = $request->get('expo_token');
@@ -55,18 +63,28 @@ class ExpoController extends Controller
         try {
             $this->expoChannel->expo->subscribe($interest, $token);
         } catch (\Exception $e) {
-            return JsonResponse::create([
+            // return JsonResponse::create([
+            //     'status'    => 'failed',
+            //     'error'     =>  [
+            //         'message' => $e->getMessage(),
+            //     ],
+            // ], 500);
+            return $this->badRequest([
                 'status'    => 'failed',
                 'error'     =>  [
                     'message' => $e->getMessage(),
                 ],
-            ], 500);
+            ]);
         }
 
-        return JsonResponse::create([
+        // return JsonResponse::create([
+        //     'status'    =>  'succeeded',
+        //     'expo_token' => $token,
+        // ], 200);
+        return $this->ok([
             'status'    =>  'succeeded',
             'expo_token' => $token,
-        ], 200);
+        ]);
     }
 
     /**
