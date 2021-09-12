@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c5574f7eb1bade005277ba33e107474",
+    "content-hash": "928433494de1647a8036ecbcfb74cbc0",
     "packages": [
         {
             "name": "aelnemr/api-response",
