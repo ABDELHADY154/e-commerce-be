@@ -118,4 +118,20 @@ class OrderController extends Controller
             return $this->ok(OrderResource::collection($orders)->resolve());
         }
     }
+
+    public function cancelOrder(Request $request)
+    {
+        $request->validate([
+            'order_id' => ['required', 'exists:orders,id']
+        ]);
+
+        $order = Order::find($request->order_id);
+        $client = Client::find(auth('api')->id());
+        if ($order && $client->orders()->where('id', $order->id)->first()) {
+            $order->status = "canceled";
+            $order->save();
+            return $this->created(['deleted']);
+        }
+        return $this->notFound(['order not found']);
+    }
 }

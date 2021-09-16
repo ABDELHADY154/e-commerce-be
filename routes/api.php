@@ -48,4 +48,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/updateclientdata', 'ClientController@updateClientData')->name('update.client.data');
     Route::put('/changePassword', 'ClientController@changePass')->name('change.password.client');
     Route::post('/subscribe', 'ClientController@sub')->name('sub.client');
+    Route::post('/cancelorder', 'API\OrderController@cancelOrder')->name('canceled.status');
 });
