@@ -38,19 +38,19 @@ class OrderController extends Controller
                     'price' => $request->price,
                     'total_price' => $request->price + 30,
                 ]);
-                foreach ($request->products as $item) {
-                    $productSize = ProductSize::find($item["size_id"]);
-                    $product = Product::find($item['product_id']);
+                // foreach ($request->products as $item) {
+                //     $productSize = ProductSize::find($item["size_id"]);
+                //     $product = Product::find($item['product_id']);
 
-                    if ($productSize->quantity < $item['quantity']) {
-                        // $cart = $client->carts()->first();
-                        // if ($cart) {
-                        //     $cart->products()->detach($product->id);
-                        //     $cart->save();
-                        // }
-                        return $this->forbidden(['message' => 'product not availble', 'product' => $product]);
-                    }
-                }
+                //     if ($productSize->quantity < $item['quantity']) {
+                //         // $cart = $client->carts()->first();
+                //         // if ($cart) {
+                //         //     $cart->products()->detach($product->id);
+                //         //     $cart->save();
+                //         // }
+                //         return $this->forbidden(['message' => 'product not availble', 'product' => $product]);
+                //     }
+                // }
                 foreach ($request->products as $item) {
                     $order->products()->attach($order->id, [
                         "product_id" => $item["product_id"],
