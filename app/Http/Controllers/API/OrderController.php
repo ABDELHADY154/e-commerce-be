@@ -71,7 +71,7 @@ class OrderController extends Controller
                     $cart->total_price = 0;
                     $cart->save();
                 }
-                $client->notify(new NewOrder(['order' => $order]));
+                // $client->notify(new NewOrder(['order' => $order]));
                 return   $this->created(['order' => $order]);
             }
             return $this->notFound(['address' => 'address not found']);
