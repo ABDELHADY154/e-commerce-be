@@ -30,7 +30,7 @@ class ProductResoource extends JsonResource
             'discount' => $this->discount,
             'favourited' => $client->hasFavorited($product),
             'images' => ProductImageResource::collection($this->images),
-            'sizes' => ProductSizeResource::collection($this->sizes)
+            'sizes' => ProductSizeResource::collection($this->sizes()->where('quantity', '>', 0)->get())
 
         ];
     }
