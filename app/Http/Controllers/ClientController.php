@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use AElnemr\RestFullResponse\CoreJsonResponse;
 use App\Client;
+use App\ClientMessage;
 use App\Http\Resources\ClientAuthResource;
 use App\Http\Resources\ClientProfileResource;
 use App\Notifications\AccountApproved;
@@ -227,5 +228,19 @@ class ClientController extends Controller
             ['token' => $token],
         );
         return $this->ok();
+    }
+
+    public function message(Request $request)
+    {
+        $request->validate([
+            'message' => ['required', 'string'],
+        ]);
+
+        $clientMessage = ClientMessage::create([
+            'message' => $request->message,
+            'client_id' => auth('api')->id(),
+        ]);
+
+        return $this->created(['message' => $clientMessage]);
     }
 }

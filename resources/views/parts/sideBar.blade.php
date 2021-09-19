@@ -29,17 +29,18 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item {{ Route::currentRouteName() == 'ad.index' ||  Route::currentRouteName() == 'clientAddress.index' || Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'client.index'? 'active' : '' }}">
+    <li class="nav-item {{ Route::currentRouteName() == 'clientMessage.index' || Route::currentRouteName() == 'ad.index' ||  Route::currentRouteName() == 'clientAddress.index' || Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'client.index'? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-users"></i>
             <span>Users</span>
         </a>
-        <div id="collapseTwo" class="collapse {{ Route::currentRouteName() == 'ad.index' ||  Route::currentRouteName() == 'clientAddress.index' || Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'client.index'? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse {{ Route::currentRouteName() == 'clientMessage.index' || Route::currentRouteName() == 'ad.index' ||  Route::currentRouteName() == 'clientAddress.index' || Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'client.index'? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item {{ Route::currentRouteName() == 'user.index'? 'active' : '' }}" href="{{ route('user.index') }}">Admin</a>
                 <a class="collapse-item {{ Route::currentRouteName() == 'client.index'? 'active' : '' }}" href="{{ route('client.index') }}">Client</a>
                 <a class="collapse-item {{ Route::currentRouteName() == 'clientAddress.index'? 'active' : '' }}" href="{{ route('clientAddress.index') }}">Client Address</a>
+                <a class="collapse-item {{ Route::currentRouteName() == 'clientMessage.index'? 'active' : '' }}" href="{{ route('clientMessage.index') }}">Client Messages</a>
                 <a class="collapse-item {{ Route::currentRouteName() == 'ad.index'? 'active' : '' }}" href="{{ route('ad.index') }}">Ads</a>
             </div>
         </div>

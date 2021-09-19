@@ -26,4 +26,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/processOrderIndex/{id}', 'OrderController@processOrderIndex')->name('process.order.index');
     Route::get('/wayorderIndex/{id}', 'OrderController@wayorderIndex')->name('way.order.index');
     Route::get('/deliveredorderIndex/{id}', 'OrderController@deliverOrderIndex')->name('deliver.order.index');
+    Route::resource('/clientMessage', 'ClientMessageController')->except(['update', 'edit', 'show', 'store', 'create']);
 });

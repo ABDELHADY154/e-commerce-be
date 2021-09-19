@@ -30,4 +30,9 @@ class Client extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    public function messages()
+    {
+        return $this->hasMany(ClientMessage::class);
+    }
 }
