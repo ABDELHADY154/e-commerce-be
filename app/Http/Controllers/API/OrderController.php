@@ -128,6 +128,15 @@ class OrderController extends Controller
         $order = Order::find($request->order_id);
         $client = Client::find(auth('api')->id());
         if ($order && $client->orders()->where('id', $order->id)->first()) {
+
+            foreach ($order->products as $product) {
+
+                $productSize = ProductSize::find($product->pivot->size_id);
+                if ($productSize) {
+                    $productSize->quantity += $product->pivot->quantity;
+                    $productSize->save();
+                }
+            }
             $order->status = "canceled";
             $order->save();
             return $this->created(['deleted']);

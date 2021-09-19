@@ -14,42 +14,42 @@
 </head>
 <body>
     <div id="app">
-        <div id="wrapper">
+        {{-- <div id="wrapper"> --}}
 
-            <!-- Sidebar -->
-            {{-- @include('parts.sideBar') --}}
-            <!-- End of Sidebar -->
+        <!-- Sidebar -->
+        {{-- @include('parts.sideBar') --}}
+        <!-- End of Sidebar -->
 
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-                <!-- Main Content -->
-                <div id="content">
+            <!-- Main Content -->
+            {{-- <div id="content"> --}}
 
-                    <!-- Topbar -->
-                    {{-- @include('parts.navbar') --}}
-                    <!-- End of Topbar -->
+            <!-- Topbar -->
+            {{-- @include('parts.navbar') --}}
+            <!-- End of Topbar -->
 
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
 
 
-                        <main class="py-4">
-                            @yield('content')
-                        </main>
-
-                    </div>
-                    <!-- /.container-fluid -->
-
-                </div>
-                <!-- End of Main Content -->
-
-                @include('parts.footer')
+                <main class="py-4">
+                    @yield('content')
+                </main>
 
             </div>
-            <!-- End of Content Wrapper -->
+            <!-- /.container-fluid -->
+
+            {{-- </div> --}}
+            <!-- End of Main Content -->
+
+            @include('parts.footer')
 
         </div>
+        <!-- End of Content Wrapper -->
+
+        {{-- </div> --}}
 
 
     </div>
