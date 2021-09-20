@@ -31,7 +31,7 @@ class ProductCreateForm extends FormComponent
             Field::make('Discount %', 'discount')->input('float')->rules(['nullable', 'numeric'])->placeholder('30'),
             Field::make('Photos', 'photos')->file()->multiple()->rules(['required']),
             Field::make('Sizes', 'sizes')->array([
-                ArrayField::make('size')->select(['S', 'M', 'L', 'XL'])->rules('required'),
+                ArrayField::make('size')->select(['XS', 'S', 'M', 'L', 'XL', 'XXL'])->rules('required'),
                 ArrayField::make('quantity')->input('number')->rules('required')
             ])->rules(['required']),
         ];

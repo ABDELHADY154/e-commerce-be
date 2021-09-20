@@ -32,10 +32,13 @@
                 <label for="">Size </label>
                 <select class="custom-select" name="size">
                     <option value="" selected>Choose Size</option>
+                    <option value="XS">XS</option>
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
                     <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+
                 </select>
                 @error('size')
                 <p class="text-danger text-center mt-2">{{$message}}</p>

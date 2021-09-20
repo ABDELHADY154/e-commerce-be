@@ -35,10 +35,14 @@
                 <label for="">Size </label>
                 <select class="custom-select" name="size">
                     <option value="" selected>Choose Size</option>
+                    <option value="XS" {{$productSize->size == "XS" ? 'selected':''}}>S</option>
+
                     <option value="S" {{$productSize->size == "S" ? 'selected':''}}>S</option>
                     <option value="M" {{$productSize->size == "M" ? 'selected':''}}>M</option>
                     <option value="L" {{$productSize->size == "L" ? 'selected':''}}>L</option>
                     <option value="XL" {{$productSize->size == "XL" ? 'selected':''}}>XL</option>
+                    <option value="XXL" {{$productSize->size == "XXL" ? 'selected':''}}>S</option>
+
                 </select>
                 @error('size')
                 <p class="text-danger text-center mt-2">{{$message}}</p>
