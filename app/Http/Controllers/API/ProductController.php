@@ -91,7 +91,7 @@ class ProductController extends Controller
 
     public function getLatestSaleProducts()
     {
-        $products = Product::where('sale', true)->orderBy('id', 'desc')->take(10)->get()->random();
+        $products = Product::where('sale', true)->orderBy('id', 'desc')->take(10)->get();
         return $this->ok(ProductResoource::collection($products)->resolve());
     }
 }
