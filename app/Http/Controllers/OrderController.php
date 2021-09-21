@@ -114,7 +114,8 @@ class OrderController extends Controller
         if ($order) {
             $order->status = "delivered";
             $order->save();
-            $client->notify(new OrderNotification($order));
+            $client->notifications(new OrderNotification($order));
+            // $client->notify(new OrderNotification($order));
             return redirect(route('order.show', $order));
         }
     }
