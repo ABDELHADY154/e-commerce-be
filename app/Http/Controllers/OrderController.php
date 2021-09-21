@@ -112,9 +112,10 @@ class OrderController extends Controller
         $order = Order::find($id);
         $client = Client::find(auth('api')->id());
         if ($order) {
+            $client->notifications(new OrderNotification($order));
+
             $order->status = "delivered";
             $order->save();
-            $client->notifications(new OrderNotification($order));
             // $client->notify(new OrderNotification($order));
             return redirect(route('order.show', $order));
         }
