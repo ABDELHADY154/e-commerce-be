@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
+use App\Notifications\OrderNotification;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -108,9 +110,11 @@ class OrderController extends Controller
     public function deliverOrder($id)
     {
         $order = Order::find($id);
+        $client = Client::find(auth('api')->id());
         if ($order) {
             $order->status = "delivered";
             $order->save();
+            $client->notify(new OrderNotification($order));
             return redirect(route('order.show', $order));
         }
     }
