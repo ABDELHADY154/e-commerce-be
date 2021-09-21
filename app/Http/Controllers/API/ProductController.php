@@ -80,6 +80,7 @@ class ProductController extends Controller
         if ($product) {
             return $this->ok((new ProductResoource($product))->resolve());
         }
+
         return $this->notFound(['product not found']);
     }
 
