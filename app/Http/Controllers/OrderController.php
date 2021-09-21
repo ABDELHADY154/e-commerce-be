@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Notifications\OrderDeliveredNotification;
 use App\Notifications\OrderNotification;
 use App\Order;
 use Illuminate\Http\Request;
@@ -100,7 +101,11 @@ class OrderController extends Controller
     public function wayorder($id)
     {
         $order = Order::find($id);
+        $client = Client::find($order->client_id);
+
         if ($order) {
+            $client->notify(new OrderNotification($order));
+
             $order->status = "on the way";
             $order->save();
             return redirect(route('order.show', $order));
@@ -113,7 +118,7 @@ class OrderController extends Controller
         $client = Client::find($order->client_id);
         if ($order) {
             // dd();
-            $client->notify(new OrderNotification($order));
+            $client->notify(new OrderDeliveredNotification($order));
             $order->status = "delivered";
             $order->save();
             // $client->notify(new OrderNotification($order));
@@ -133,7 +138,10 @@ class OrderController extends Controller
     public function wayorderIndex($id)
     {
         $order = Order::find($id);
+        $client = Client::find($order->client_id);
+
         if ($order) {
+            $client->notify(new OrderNotification($order));
             $order->status = "on the way";
             $order->save();
             return redirect(route('order.index'));
@@ -143,7 +151,10 @@ class OrderController extends Controller
     public function deliverOrderIndex($id)
     {
         $order = Order::find($id);
+        $client = Client::find($order->client_id);
+
         if ($order) {
+            $client->notify(new OrderDeliveredNotification($order));
             $order->status = "delivered";
             $order->save();
             return redirect(route('order.index'));

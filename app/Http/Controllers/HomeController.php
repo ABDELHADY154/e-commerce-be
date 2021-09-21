@@ -32,8 +32,8 @@ class HomeController extends Controller
         $toalDelivery = 0;
         $netIncome = 0;
 
-        $ordersCount = Order::where('status', '!=', 'canceled')->count();
-        $orders = Order::where('status', '!=', 'canceled')->get();
+        $ordersCount = Order::where('status', 'delivered')->count();
+        $orders = Order::where('status', 'delivered')->get();
         foreach ($orders as $order) {
             $totalIncome += $order->total_price;
             $toalDelivery += $order->delivery;
