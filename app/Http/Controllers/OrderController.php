@@ -110,10 +110,10 @@ class OrderController extends Controller
     public function deliverOrder($id)
     {
         $order = Order::find($id);
-        $client = Client::find(auth('api')->id());
+        $client = Client::find($order->client_id);
         if ($order) {
-            dd($client->notify(new OrderNotification($order)));
-
+            // dd();
+            $client->notify(new OrderNotification($order));
             $order->status = "delivered";
             $order->save();
             // $client->notify(new OrderNotification($order));
