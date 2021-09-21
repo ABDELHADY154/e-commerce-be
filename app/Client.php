@@ -11,7 +11,7 @@ use Overtrue\LaravelFavorite\Traits\Favoriter;
 
 class Client extends Authenticatable
 {
-    use Favoriter, SoftDeletes, HasApiTokens, Notifiable;
+    use Favoriter, SoftDeletes, HasApiTokens;
 
     protected $fillable = [
         'name', 'email', 'password', 'phone_number', 'image'
