@@ -20,6 +20,7 @@ Route::post('/resetPass', 'ForgetPasswordController@forgot')->name('client.forge
 Route::post('/resetVerify', 'ForgetPasswordController@verify')->name('client.verify');
 Route::get('/saleproduct', 'API\ProductController@getLatestSaleProducts')->name('get.latest.sale.products');
 Route::get('/newproduct', 'API\ProductController@getLatestNewProducts')->name('get.latest.new.products');
+Route::get('/ads', 'AdController@getAllImages')->name('get.all.ads');
 
 
 Route::middleware('auth:api')->group(function () {
@@ -45,7 +46,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/statusordered', 'API\OrderController@getOrderedStatus')->name('get.ordered.status');
     Route::get('/statusProcessed', 'API\OrderController@getProcessStatus')->name('get.processed.status');
     Route::get('/statusdelivered', 'API\OrderController@getDeliveredStatus')->name('get.delivered.status');
-    Route::get('/ads', 'AdController@getAllImages')->name('get.all.ads');
     Route::put('/updateclientdata', 'ClientController@updateClientData')->name('update.client.data');
     Route::put('/changePassword', 'ClientController@changePass')->name('change.password.client');
     Route::post('/subscribe', 'ClientController@sub')->name('sub.client');
