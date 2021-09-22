@@ -28,7 +28,7 @@ class ProductResoource extends JsonResource
             'total_price' => round($this->total_price, 2),
             'sale' => $this->sale == 1 ? true : false,
             'discount' => $this->discount,
-            'favourited' => $client->hasFavorited($product),
+            'favourited' => $client ? $client->hasFavorited($product) : false,
             'images' => ProductImageResource::collection($this->images),
             'sizes' => ProductSizeResource::collection($this->sizes()->where('quantity', '>', 0)->get())
 

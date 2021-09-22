@@ -18,6 +18,9 @@ Route::post('/clientLogin', 'ClientController@login')->name('client.login');
 Route::post('/clientRegister', 'ClientController@register')->name('client.register');
 Route::post('/resetPass', 'ForgetPasswordController@forgot')->name('client.forgetPassword');
 Route::post('/resetVerify', 'ForgetPasswordController@verify')->name('client.verify');
+Route::get('/saleproduct', 'API\ProductController@getLatestSaleProducts')->name('get.latest.sale.products');
+Route::get('/newproduct', 'API\ProductController@getLatestNewProducts')->name('get.latest.new.products');
+
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/clientProfile', 'ClientController@getProfile')->name('client.get-profile');
@@ -31,8 +34,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/unfavorite', 'API\ProductController@unFavoriteProduct')->name('unfavorite.product');
     Route::get('/favorite', 'API\ProductController@getFavoritedProducts')->name('get.favorite.product');
     Route::get('/product/{id}', 'API\ProductController@getProduct')->name('get.product');
-    Route::get('/newproduct', 'API\ProductController@getLatestNewProducts')->name('get.latest.new.products');
-    Route::get('/saleproduct', 'API\ProductController@getLatestSaleProducts')->name('get.latest.sale.products');
     Route::post('/addtocart', 'API\CartController@addToCart')->name('add.to.cart');
     Route::get('/cart', 'API\CartController@cartList')->name('cart.list');
     Route::post('/updateCart', 'API\CartController@updateCart')->name('update.to.cart');
