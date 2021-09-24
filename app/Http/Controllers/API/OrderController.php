@@ -135,6 +135,8 @@ class OrderController extends Controller
                 if ($productSize) {
                     $productSize->quantity += $product->pivot->quantity;
                     $productSize->save();
+                    $product->quantity += $product->pivot->quantity;
+                    $product->save();
                 }
             }
             $order->status = "canceled";
