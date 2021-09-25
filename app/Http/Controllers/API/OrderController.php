@@ -23,7 +23,8 @@ class OrderController extends Controller
         $request->validate([
             'address_id' => ['required', 'exists:client_addresses,id'],
             'price' => ['required'],
-            'products' => ['required', 'array']
+            'products' => ['required', 'array'],
+            'delivery' => ['required']
         ]);
         $client = Client::find(auth('api')->id());
 
@@ -34,9 +35,9 @@ class OrderController extends Controller
                     'order_num' => $client->name[0] . $client->name[1] . $request->address_id . Str::random(5),
                     'client_id' => $client->id,
                     'address_id' => $address->id,
-                    'delivery' => 30,
+                    'delivery' => $request->delivery,
                     'price' => $request->price,
-                    'total_price' => $request->price + 30,
+                    'total_price' => $request->price + $request->delivery,
                 ]);
                 foreach ($request->products as $item) {
                     $productSize = ProductSize::find($item["size_id"]);
