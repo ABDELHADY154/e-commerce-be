@@ -18,7 +18,7 @@ class ClientProfileResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
-            'orders' => count($this->orders()->where('status', '!=', 'canceled')),
+            'orders' => count($this->orders()->where('status', '!=', 'canceled')->get()),
             'addresses' => count($this->addresses),
             'image' => asset('storage/clientImages/' . $this->image),
         ];
