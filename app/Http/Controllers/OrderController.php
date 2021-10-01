@@ -18,7 +18,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::where('status', '!=', 'canceled')->get();
         return view('admin.Order.index', ['orders' => $orders]);
     }
 
