@@ -41,8 +41,8 @@
                     <option value="M" {{$productSize->size == "M" ? 'selected':''}}>M</option>
                     <option value="L" {{$productSize->size == "L" ? 'selected':''}}>L</option>
                     <option value="XL" {{$productSize->size == "XL" ? 'selected':''}}>XL</option>
-                    <option value="XXL" {{$productSize->size == "XXL" ? 'selected':''}}>S</option>
-
+                    <option value="XXL" {{$productSize->size == "XXL" ? 'selected':''}}>XXL</option>
+                    <option value="XXXL" {{$productSize->size == "XXXL" ? 'selected':''}}>XXXL</option>
                 </select>
                 @error('size')
                 <p class="text-danger text-center mt-2">{{$message}}</p>
