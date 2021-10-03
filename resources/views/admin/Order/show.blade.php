@@ -200,7 +200,7 @@
                 <figure class="itemside mb-3">
                     <div class="aside"><img src="{{asset('storage/products/' . $product->images()->first()->image )}}" class="img-sm border"></div>
                     <figcaption class="info align-self-center">
-                        <p class="title">{{$product->name}} <br> Quantity: {{$product->pivot->quantity}}</p> <span class="text-muted">{{$product->total_price}} EGP </span>
+                        <p class="title">{{$product->name}} <br> Quantity: {{$product->pivot->quantity}}<br> Size: {{$product->sizes()->find($product->pivot->size_id)?$product->sizes()->find($product->pivot->size_id)->size:""}}</p> <span class="text-muted">{{$product->total_price}} EGP </span>
                     </figcaption>
                 </figure>
             </li>
