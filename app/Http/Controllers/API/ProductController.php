@@ -23,7 +23,7 @@ class ProductController extends Controller
         if ($brand) {
             $categories = $brand->categories;
             foreach ($categories as $category) {
-                foreach ($category->products  as $product) {
+                foreach ($category->products()->where('quantity', '!=', 0)->get()  as $product) {
                     $products[] = $product;
                 }
             }
@@ -92,7 +92,7 @@ class ProductController extends Controller
 
     public function getLatestSaleProducts()
     {
-        $products = Product::where('sale', true)->orderBy('id', 'desc')->get()->random(10);
+        $products = Product::where('sale', true)->where('quantity', '!=', 0)->orderBy('id', 'desc')->get()->random(10);
         return $this->ok(ProductResoource::collection($products)->resolve());
     }
 }
