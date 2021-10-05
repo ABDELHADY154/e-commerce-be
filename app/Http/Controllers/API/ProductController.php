@@ -34,7 +34,7 @@ class ProductController extends Controller
     public function categoryProducts($catId)
     {
         $category = Category::find($catId);
-        return $this->ok(ProductResoource::collection($category->products)->resolve());
+        return $this->ok(ProductResoource::collection($category->products()->where('quantity', '!=', 0)->get())->resolve());
     }
 
     public function favoriteProduct(Request $request)
