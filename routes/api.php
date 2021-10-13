@@ -23,12 +23,13 @@ Route::get('/newproduct', 'API\ProductController@getLatestNewProducts')->name('g
 Route::get('/ads', 'AdController@getAllImages')->name('get.all.ads');
 Route::get('/product/{id}', 'API\ProductController@getProduct')->name('get.product');
 
+Route::get('/men-brands', 'API\BrandController@getMenBrands')->name('get.men.brands');
+Route::get('/women-brands', 'API\BrandController@getWomenBrands')->name('get.women.brands');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/clientProfile', 'ClientController@getProfile')->name('client.get-profile');
     Route::post('/clientUpdateImage', 'ClientController@updateImage')->name('client.update-image');
-    Route::get('/men-brands', 'API\BrandController@getMenBrands')->name('get.men.brands');
-    Route::get('/women-brands', 'API\BrandController@getWomenBrands')->name('get.women.brands');
+
     Route::get('/brand-categories/{brandId}', 'API\CategoryController@getCategories')->name('get.brand.categories');
     Route::get('/allProduct/{brandId}', 'API\ProductController@allProducts')->name('get.all.products.of.brand');
     Route::get('/categoryProducts/{catId}', 'API\ProductController@categoryProducts')->name('get.all.products.of.category');
