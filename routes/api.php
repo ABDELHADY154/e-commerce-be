@@ -25,6 +25,9 @@ Route::get('/product/{id}', 'API\ProductController@getProduct')->name('get.produ
 
 Route::get('/men-brands', 'API\BrandController@getMenBrands')->name('get.men.brands');
 Route::get('/women-brands', 'API\BrandController@getWomenBrands')->name('get.women.brands');
+Route::get('/brand-categories/{brandId}', 'API\CategoryController@getCategories')->name('get.brand.categories');
+Route::get('/allProduct/{brandId}', 'API\ProductController@allProducts')->name('get.all.products.of.brand');
+Route::get('/categoryProducts/{catId}', 'API\ProductController@categoryProducts')->name('get.all.products.of.category');
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/clientProfile', 'ClientController@getProfile')->name('client.get-profile');
