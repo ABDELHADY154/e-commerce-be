@@ -28,6 +28,7 @@ Route::get('/women-brands', 'API\BrandController@getWomenBrands')->name('get.wom
 Route::get('/brand-categories/{brandId}', 'API\CategoryController@getCategories')->name('get.brand.categories');
 Route::get('/allProduct/{brandId}', 'API\ProductController@allProducts')->name('get.all.products.of.brand');
 Route::get('/categoryProducts/{catId}', 'API\ProductController@categoryProducts')->name('get.all.products.of.category');
+
 Route::middleware('auth:api')->group(function () {
     Route::get('/clientProfile', 'ClientController@getProfile')->name('client.get-profile');
     Route::post('/clientUpdateImage', 'ClientController@updateImage')->name('client.update-image');

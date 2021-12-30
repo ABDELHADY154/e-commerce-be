@@ -18,13 +18,23 @@ class ProductController extends Controller
 
     public function allProducts($brandId)
     {
+
         $products = [];
         $brand = Brand::find($brandId);
         if ($brand) {
+
             $categories = $brand->categories;
             foreach ($categories as $category) {
                 foreach ($category->products()->where('quantity', '!=', 0)->get()  as $product) {
-                    $products[] = $product;
+                    if (isset($_GET['size']) && $_GET['size'] !== "") {
+                        foreach ($product->sizes as  $size) {
+                            if ($size->size == $_GET['size']) {
+                                $products[] = $product;
+                            }
+                        }
+                    } else {
+                        $products[] = $product;
+                    }
                 }
             }
             return $this->ok(ProductResoource::collection($products)->resolve());
@@ -33,8 +43,20 @@ class ProductController extends Controller
 
     public function categoryProducts($catId)
     {
+        $products = [];
         $category = Category::find($catId);
-        return $this->ok(ProductResoource::collection($category->products()->where('quantity', '!=', 0)->get())->resolve());
+        foreach ($category->products()->where('quantity', '!=', 0)->get()  as $product) {
+            if (isset($_GET['size']) && $_GET['size'] !== "") {
+                foreach ($product->sizes as  $size) {
+                    if ($size->size == $_GET['size']) {
+                        $products[] = $product;
+                    }
+                }
+            } else {
+                $products[] = $product;
+            }
+        }
+        return $this->ok(ProductResoource::collection($products)->resolve());
     }
 
     public function favoriteProduct(Request $request)
