@@ -28,7 +28,7 @@ class ProductController extends Controller
                 foreach ($category->products()->where('quantity', '!=', 0)->get()  as $product) {
                     if (isset($_GET['size']) && $_GET['size'] !== "") {
                         foreach ($product->sizes as  $size) {
-                            if ($size->size == $_GET['size']) {
+                            if ($size->size == $_GET['size'] && $size->quantity > 0) {
                                 $products[] = $product;
                             }
                         }
@@ -48,7 +48,7 @@ class ProductController extends Controller
         foreach ($category->products()->where('quantity', '!=', 0)->get()  as $product) {
             if (isset($_GET['size']) && $_GET['size'] !== "") {
                 foreach ($product->sizes as  $size) {
-                    if ($size->size == $_GET['size']) {
+                    if ($size->size == $_GET['size'] && $size->quantity > 0) {
                         $products[] = $product;
                     }
                 }
