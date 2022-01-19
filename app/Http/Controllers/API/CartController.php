@@ -155,6 +155,10 @@ class CartController extends Controller
                 $cart->total_price -= ($cartProduct->quantity * $product->total_price);
                 $cart->save();
                 $cartProduct = DB::table('cart_product')->where('product_id', $product->id)->where('size_id', $request->size_id)->delete();
+                if ($cart->total_price < 0) {
+                    $cart->total_price = 0;
+                    $cart->save();
+                }
                 return $this->ok(['deleted']);
             }
             return $this->notFound(['item not found']);
