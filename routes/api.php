@@ -52,4 +52,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/subscribe', 'ClientController@sub')->name('sub.client');
     Route::post('/cancelorder', 'API\OrderController@cancelOrder')->name('canceled.status');
     Route::post('/message', 'ClientController@message')->name('send.message');
+    Route::post('/checkPromo', 'PromoCodeController@check')->name('promo-check');
+    Route::post('/usePromo', 'PromoCodeController@usePromo')->name('promo-usePromo');
 });

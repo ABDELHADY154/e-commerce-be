@@ -97,14 +97,15 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item {{  Route::currentRouteName() == 'order.index' ? 'active' : '' }}">
+    <li class="nav-item {{  Route::currentRouteName() == 'order.index' || Route::currentRouteName() == 'promocode.index' ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
             <i class="fas fa-shopping-basket"></i> <span>Orders</span>
         </a>
-        <div id="collapseFour" class="collapse {{  Route::currentRouteName() == 'order.index'  ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseFour" class="collapse {{  Route::currentRouteName() == 'order.index' || Route::currentRouteName() == 'promocode.index'  ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                 <a class="collapse-item {{ Route::currentRouteName() == 'order.index'? 'active' : '' }}" href="{{ route('order.index') }}">Orders</a>
+                <a class="collapse-item {{ Route::currentRouteName() == 'promocode.index'? 'active' : '' }}" href="{{ route('promocode.index') }}">Promo Codes</a>
 
                 {{-- <a class="collapse-item {{ Route::currentRouteName() == 'client.index'? 'active' : '' }}" href="{{ route('client.index') }}">Client</a> --}}
             </div>

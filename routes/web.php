@@ -27,4 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/wayorderIndex/{id}', 'OrderController@wayorderIndex')->name('way.order.index');
     Route::get('/deliveredorderIndex/{id}', 'OrderController@deliverOrderIndex')->name('deliver.order.index');
     Route::resource('/clientMessage', 'ClientMessageController')->except(['update', 'edit', 'show', 'store', 'create']);
+    Route::get('/promocodes/{code}', 'PromoCodeController@disable')->name('promocode.disable');
+
+    Route::resource('/promocode', 'PromoCodeController');
 });
