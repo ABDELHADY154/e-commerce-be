@@ -20,7 +20,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.4",
         "livewire/livewire": "^2.5",
-        "overtrue/laravel-favorite": "^4.0"
+        "overtrue/laravel-favorite": "^4.0",
+        "zgabievi/promocodes": "^8.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

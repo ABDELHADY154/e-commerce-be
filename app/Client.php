@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Gabievi\Promocodes\Traits\Rewardable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,7 @@ use Overtrue\LaravelFavorite\Traits\Favoriter;
 
 class Client extends Authenticatable
 {
-    use Favoriter, SoftDeletes, HasApiTokens, Notifiable;
+    use Favoriter, SoftDeletes, HasApiTokens, Notifiable, Rewardable;
 
     protected $fillable = [
         'name', 'email', 'password', 'phone_number', 'image'
