@@ -168,7 +168,8 @@ class PromoCodeController extends Controller
                     return $this->forbidden(['promo code is used before !']);
                 }
             }
-            $client::applyCode($promo->code, $callback = null);
+            // $client::applyCode($promo->code, $callback = null);
+            Promocodes::apply($promo->code);
 
 
             $cart->update([
