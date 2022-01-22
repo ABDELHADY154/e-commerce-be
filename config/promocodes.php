@@ -1,5 +1,7 @@
 <?php
 
+use App\Client;
+
 return [
 
     /*
@@ -13,7 +15,7 @@ return [
      * Database pivot table name for promocodes and users relation
      * use default database name: 'promocode_user'
      */
-    'relation_table' => 'promocode_user',
+    'relation_table' => 'promocode_client',
 
     /*
      * List of characters, promo code generated from.
@@ -60,7 +62,7 @@ return [
     /**
      * User model
      */
-    'user_model' => \App\Client::class,
+    'user_model' => Client::class,
 
     /**
      * Foreign pivot key for many to many relationship
@@ -72,5 +74,5 @@ return [
      * Related pivot key for many to many relationship
      * of promocode and user model
      */
-    'related_pivot_key' => 'user_id',
+    'related_pivot_key' => 'client_id',
 ];
