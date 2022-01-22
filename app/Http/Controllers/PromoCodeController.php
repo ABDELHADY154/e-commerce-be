@@ -169,11 +169,12 @@ class PromoCodeController extends Controller
                 }
             }
             // $client->redeemCode($request->promo, $callback = null);
-            dd($promo->id);
-            DB::table('promocode_user')->insert(
+            // dd($promo->id);
+            $insertInCodeTable = DB::table('promocode_user')->insert(
                 [
                     'user_id' => $client->id,
                     'promocode_id' => $promo->id,
+                    'used_at' => now(),
                 ]
             );
 
