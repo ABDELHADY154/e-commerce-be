@@ -168,8 +168,9 @@ class PromoCodeController extends Controller
             //         return $this->forbidden(['promo code is used before !']);
             //     }
             // }
-            dd(true);
             $client->applyCode($promo->code, $callback = null);
+            dd(true);
+
             $cart->update([
                 'total_price' => $cart->total_price - ($cart->total_price * $perc)
             ]);
