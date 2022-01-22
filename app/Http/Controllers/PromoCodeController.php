@@ -168,8 +168,14 @@ class PromoCodeController extends Controller
                     return $this->forbidden(['promo code is used before !']);
                 }
             }
-            $client->redeemCode($request->promo, $callback = null);
+            // $client->redeemCode($request->promo, $callback = null);
 
+            DB::table('promocode_user')->insert(
+                [
+                    'user_id' => $client->id,
+                    'promocode_id' => $promo->id,
+                ]
+            );
 
             $cart->update([
                 'total_price' => $cart->total_price - ($cart->total_price * $perc)
