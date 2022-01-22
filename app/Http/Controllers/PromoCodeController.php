@@ -169,7 +169,7 @@ class PromoCodeController extends Controller
                 }
             }
             // $client->redeemCode($request->promo, $callback = null);
-            dd($promo);
+            dd($promo->id);
             DB::table('promocode_user')->insert(
                 [
                     'user_id' => $client->id,
