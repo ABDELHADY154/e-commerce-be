@@ -163,11 +163,11 @@ class PromoCodeController extends Controller
             $total_price = $cart->total_price - ($cart->total_price * $perc);
             $userCodes = DB::table('promocode_user')->get();
 
-            foreach ($userCodes as $clientPromo) {
-                if ($clientPromo->user_id == $client->id && $clientPromo->promocode_id == $promo->id) {
-                    return $this->forbidden(['promo code is used before !']);
-                }
-            }
+            // foreach ($userCodes as $clientPromo) {
+            //     if ($clientPromo->user_id == $client->id && $clientPromo->promocode_id == $promo->id) {
+            //         return $this->forbidden(['promo code is used before !']);
+            //     }
+            // }
             $client->applyCode($promo->code, $callback = null);
             $cart->update([
                 'total_price' => $cart->total_price - ($cart->total_price * $perc)
