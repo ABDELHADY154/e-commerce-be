@@ -169,7 +169,7 @@ class PromoCodeController extends Controller
                 }
             }
             // $client::applyCode($promo->code, $callback = null);
-            Promocodes::apply($promo->code);
+            Promocodes::apply($request->promo);
 
 
             $cart->update([
