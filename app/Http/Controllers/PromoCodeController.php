@@ -177,6 +177,7 @@ class PromoCodeController extends Controller
                     'used_at' => now(),
                 ]
             );
+            dd($insertInCodeTable);
 
             $cart->update([
                 'total_price' => $cart->total_price - ($cart->total_price * $perc)
