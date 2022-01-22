@@ -144,6 +144,7 @@ class PromoCodeController extends Controller
                     return $this->forbidden(['promo code is used before !']);
                 }
             }
+            $client->applyCode($promo->code, $callback = null);
 
 
             return $this->ok(['cart' => $cart, 'price' => $total_price, 'discount' => $promo->reward . "%"]);
