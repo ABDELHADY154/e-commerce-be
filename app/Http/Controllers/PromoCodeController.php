@@ -179,7 +179,8 @@ class PromoCodeController extends Controller
             ]);
 
             $cart->save();
-
+            $promo->quantity -= 1;
+            $promo->save();
             return $this->ok(['cart' => $cart, 'price' => $total_price, 'discount' => $promo->reward . "%"]);
         }
         return $this->notFound();
