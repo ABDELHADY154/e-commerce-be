@@ -33,7 +33,7 @@ class CreatePromocodesTable extends Migration
 
             $table->timestamp('used_at');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('promocode_id')->references('id')->on('promocodes')->onDelete('cascade');
         });
     }
