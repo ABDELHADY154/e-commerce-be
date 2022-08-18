@@ -160,7 +160,7 @@ class ClientController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'unique:clients,email'],
+            'email' => ['required', 'email'],
             'phone_number' => ['nullable', 'numeric'],
             'password' => ['required', 'min:8']
         ]);
