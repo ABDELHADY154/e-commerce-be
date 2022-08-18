@@ -156,6 +156,33 @@ class ClientController extends Controller
         $token = $client->createToken('Auth Token')->accessToken;
         return $this->ok((new ClientAuthResource(['token' => $token, 'client' => $client]))->resolve());
     }
+    public function fbLogin(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email', 'unique:clients,email'],
+            'phone_number' => ['nullable', 'numeric'],
+            'password' => ['required', 'min:8']
+        ]);
+
+        $client  = Client::where("email", $request->email)->first();
+        if ($client) {
+
+            $token = $client->createToken('Auth Token')->accessToken;
+            return $this->ok((new ClientAuthResource(['token' => $token, 'client' => $client]))->resolve());
+        } else {
+            $client =  Client::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'phone_number' => $request->phone_number
+
+            ]);
+
+            $token = $client->createToken('Auth Token')->accessToken;
+            return $this->ok((new ClientAuthResource(['token' => $token, 'client' => $client]))->resolve());
+        }
+    }
     public function getProfile()
     {
         $client = Client::find(auth('api')->id());

@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/clientLogin', 'ClientController@login')->name('client.login');
 Route::post('/clientRegister', 'ClientController@register')->name('client.register');
+Route::post('/fblogin', 'ClientController@fbLogin')->name('client.fbLogin');
+
 Route::post('/resetPass', 'ForgetPasswordController@forgot')->name('client.forgetPassword');
 Route::post('/resetVerify', 'ForgetPasswordController@verify')->name('client.verify');
 Route::get('/saleproduct', 'API\ProductController@getLatestSaleProducts')->name('get.latest.sale.products');
